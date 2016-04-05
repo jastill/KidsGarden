@@ -10,7 +10,9 @@
  *  Digital 5 – controls RELAY3’s COM3 pin (located in J3)
  *  Digital 6 – controls RELAY2’s COM2 pin (located in J2)
  *  Digital 7 – controls RELAY1’s COM1 pin (located in J1)
+ *  
  */
+
 
 int pumpControl = 4;    // Digital Arduino Pin used to control the motor
 int lightPin = 0;       // Analog Pin 0
