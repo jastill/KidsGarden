@@ -17,8 +17,10 @@
 int pumpControl = 4;    // Digital Arduino Pin used to control the motor
 int lightPin = 0;       // Analog Pin 0
 int moisturePin = 1;    // Analog Pin 1
+int bucketWaterPin = 13;
 
 #define MINMOISTURE 200
+#define MINBUCKET 200
  
 /**
  * Setup the board
@@ -48,16 +50,20 @@ void loop()  {
 
     int moistureValue = readMoisture();
     Serial.print("Moisture reading = ");
-    Serial.println(moistureValue);  
-
+    Serial.println(moistureValue);
+     
+    int bucketWaterValue = readBucketWaterLevel();
+    Serial.print("Water level in bucket = ");
+    Serial.println(bucketWaterValue);  
+    
     // If the ground is too dry, water it
-    if (moistureValue < MINMOISTURE) {
+    if (moistureValue < MINMOISTURE && bucketWaterValue > MINBUCKET) {
       turnPumpOn();
     } else {
       turnPumpOff();
     }
-    
-    delay(1000);
+    //WAIT 10 SECONDS between turning pump on and off
+    delay(10000);
 }
 
 /**
@@ -88,5 +94,9 @@ int readLight() {
  */
 int readMoisture() {
   return analogRead(moisturePin);
+}
+
+int readBucketWaterLevel() {
+  return analogRead (bucketWaterPin);
 }
 
