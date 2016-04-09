@@ -17,7 +17,7 @@
 int pumpControl = 4;    // Digital Arduino Pin used to control the motor
 int lightPin = 0;       // Analog Pin 0
 int moisturePin = 1;    // Analog Pin 1
-int bucketWaterPin = 13;
+int bucketWaterPin = 2; // Analog Pin 2
 
 #define MINMOISTURE 200
 #define MINBUCKET 200
@@ -62,8 +62,8 @@ void loop()  {
     } else {
       turnPumpOff();
     }
-    //WAIT 10 SECONDS between turning pump on and off
-    delay(10000);
+    // WAIT 2 SECONDS before checking the bucket and moisture level again
+    delay(2000);
 }
 
 /**
